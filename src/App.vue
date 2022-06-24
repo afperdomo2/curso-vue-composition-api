@@ -1,6 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <!-- Componente dinámico con el tag = component -->
+  <component :is="componente"></component>
 </template>
 
 <script>
@@ -10,6 +11,11 @@ export default {
   name: "App",
   components: {
     HelloWorld,
+  },
+  data() {
+    return {
+      componente: "HelloWorld",
+    };
   },
 };
 </script>
