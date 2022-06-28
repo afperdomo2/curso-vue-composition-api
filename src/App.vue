@@ -1,21 +1,13 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <!-- Componente dinámico con el tag = component -->
-  <component :is="componente"></component>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "App",
-  components: {
-    HelloWorld,
-  },
+  components: {},
   data() {
-    return {
-      componente: "HelloWorld",
-    };
+    return {};
   },
 };
 </script>
