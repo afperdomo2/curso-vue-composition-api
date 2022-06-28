@@ -1,13 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <button @click="show = !show">Menu</button>
+  <Transition name="fade">
+    <NavMenu v-show="show" />
+  </Transition>
 </template>
 
 <script>
+import NavMenu from "./components/NavMenu.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    NavMenu,
+  },
   data() {
-    return {};
+    return {
+      show: false,
+    };
   },
 };
 </script>
@@ -20,5 +29,29 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+/*
+  Las transiciones tienen 2 estados
+
+  Enter => Al entrar en la transición
+  Leave => Al salir de la transición
+
+  Cada estado tiene 3 clases:
+  - from   = Al iniciar el estado
+  - activa = Al encontrarnos ya en el estado
+  - to     = Al finalizar el estado
+
+  Documentación: https://vuejs.org/guide/built-ins/transition.html#the-transition-component
+*/
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.6s ease;
 }
 </style>
