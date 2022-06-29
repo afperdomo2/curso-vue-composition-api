@@ -1,17 +1,24 @@
 <template>
-  <button @click="show = !show">Menu</button>
-  <Transition name="fade">
-    <NavMenu v-show="show" />
-  </Transition>
+  <div>
+    <button @click="show = !show">Menu</button>
+    <Transition name="fade">
+      <NavMenu v-show="show" />
+    </Transition>
+    <hr />
+
+    <ModalExample />
+  </div>
 </template>
 
 <script>
 import NavMenu from "./components/NavMenu.vue";
+import ModalExample from "./components/ModalExample.vue";
 
 export default {
   name: "App",
   components: {
     NavMenu,
+    ModalExample,
   },
   data() {
     return {
