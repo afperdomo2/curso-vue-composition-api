@@ -7,15 +7,20 @@
     <hr />
 
     <ModalExample />
+    <hr />
+
+    <p>{{ textoBase }}</p>
   </div>
 </template>
 
 <script>
 import NavMenu from "./components/NavMenu.vue";
 import ModalExample from "./components/ModalExample.vue";
+import base from "./mixins/base";
 
 export default {
   name: "App",
+  mixins: [base],
   components: {
     NavMenu,
     ModalExample,
