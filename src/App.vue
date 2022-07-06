@@ -6,7 +6,10 @@
     </Transition>
     <hr />
 
-    <ModalExample />
+    <LifeCycle />
+    <hr />
+
+    <CompositionApi />
     <hr />
 
     <p>{{ textoBase }}</p>
@@ -15,7 +18,8 @@
 
 <script>
 import NavMenu from "./components/NavMenu.vue";
-import ModalExample from "./components/ModalExample.vue";
+import CompositionApi from "./components/CompositionApi.vue";
+import LifeCycle from "./components/LifeCycle.vue";
 import base from "./mixins/base";
 
 export default {
@@ -23,7 +27,8 @@ export default {
   mixins: [base],
   components: {
     NavMenu,
-    ModalExample,
+    LifeCycle,
+    CompositionApi,
   },
   data() {
     return {
