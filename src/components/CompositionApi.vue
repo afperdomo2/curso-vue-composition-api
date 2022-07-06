@@ -3,35 +3,49 @@
   <p>{{ text }} - Contador: {{ counter }}</p>
   <p>
     <b>Nombre:</b>
-    {{ persona.name }}
+    {{ persona.nombre }}
     <b>Edad:</b>
-    {{ persona.age }}
+    {{ persona.edad }}
   </p>
-  <input type="text" v-model="persona.name" />
+  <input type="text" v-model="persona.nombre" />
 </template>
 
 <script>
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, watch } from "vue";
 
 export default {
   setup() {
-    // Ref
+    // Refs
     // Sirve para agregar reactividad a tipos de datos primitivos
-    // Ejmeplo: String, Number, Boolean, etc
+    // Ejemplo: String, Number, Boolean, etc
     const text = ref("Hola vue");
     const counter = ref(0);
 
     // Reactive
     // Sirve para agregar reactividad a objetos
     const persona = reactive({
-      name: "Felipe",
-      age: 20,
+      nombre: "Felipe",
+      edad: 20,
     });
 
     setInterval(() => {
       counter.value++;
-    }, 500);
+    }, 5000);
 
+    // Watchers
+    // Con refs
+    watch(counter, (actual, anterior) => {
+      console.log(actual, anterior);
+    });
+    // Con reactive
+    watch(
+      () => persona.nombre,
+      (actual, anterior) => {
+        console.log("Nombre actual:", actual, "Nombre anterior:", anterior);
+      }
+    );
+
+    // Hooks
     onMounted(() => {
       counter.value = 100;
       console.log("mounted Composition API");
