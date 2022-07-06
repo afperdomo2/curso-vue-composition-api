@@ -2,16 +2,23 @@
   <h1>Composition API</h1>
   <p>{{ text }} - Contador: {{ counter }}</p>
   <p>
-    <b>Nombre:</b>
-    {{ persona.nombre }}
+    <b>Nombre Completo:</b>
+    {{ persona.nombreCompleto }}
+  </p>
+  <p>
+    <b>Nombre Completo Mayúsculas:</b>
+    {{ nombreCompletoMayus }}
+  </p>
+  <p>
     <b>Edad:</b>
     {{ persona.edad }}
   </p>
   <input type="text" v-model="persona.nombre" />
+  <input type="text" v-model="persona.apellido" />
 </template>
 
 <script>
-import { ref, reactive, onMounted, watch } from "vue";
+import { ref, reactive, onMounted, watch, computed } from "vue";
 
 export default {
   setup() {
@@ -20,12 +27,17 @@ export default {
     // Ejemplo: String, Number, Boolean, etc
     const text = ref("Hola vue");
     const counter = ref(0);
+    const casa = ref("🐺Stark");
 
     // Reactive
     // Sirve para agregar reactividad a objetos
     const persona = reactive({
       nombre: "Felipe",
+      apellido: "Perez",
       edad: 20,
+      nombreCompleto: computed(() => {
+        return `${persona.nombre} ${persona.apellido}`;
+      }),
     });
 
     setInterval(() => {
@@ -55,6 +67,10 @@ export default {
       text,
       counter,
       persona,
+      // Computed props
+      nombreCompletoMayus: computed(() => {
+        return `${persona.nombre} ${persona.apellido} de la casa ${casa.value}`.toUpperCase();
+      }),
     };
   },
 };
