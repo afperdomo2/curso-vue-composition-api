@@ -1,5 +1,8 @@
 <template>
   <h1>Composition API</h1>
+
+  <slot name="content"></slot>
+
   <p>{{ text }} - Contador: {{ counter }}</p>
   <p>
     <b>Nombre Completo:</b>
@@ -25,7 +28,19 @@ export default {
     ciudad: String,
     continente: String,
   },
-  setup(props) {
+  setup(props, { attrs, expose, slots }) {
+    /*
+     * Context - attrs
+     * Atributos pasados al componente, que no son recibidos en props
+     */
+    console.log("Attrs =>", attrs.otro);
+
+    /**
+     * Context - Solts
+     * Un objeto con todas las funciones de renderizado de los templates de Slots
+     */
+    console.log("Slots =>", slots);
+
     /*
      * toRefs
      * Convierte todas las propiedades en un objeto simple con propiedades que son referencias.
@@ -88,6 +103,12 @@ export default {
     onMounted(() => {
       counter.value = 100;
       console.log("mounted Composition API");
+    });
+
+    // Context - Expose. Puede publicar una variable o un objeto
+    expose({
+      persona,
+      counter,
     });
 
     return {

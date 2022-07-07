@@ -1,6 +1,8 @@
 <template>
   <div>
     <button @click="show = !show">Menu</button>
+    <hr />
+
     <Transition name="fade">
       <NavMenu v-show="show" />
     </Transition>
@@ -9,7 +11,13 @@
     <LifeCycle />
     <hr />
 
-    <CompositionApi ciudad="Invernalia" continente="Poniente" />
+    <CompositionApi ciudad="Invernalia" continente="Poniente" otro="algo">
+      <template v-slot:content>
+        <hr />
+        <button>Botón desde un SLOT</button>
+        <hr />
+      </template>
+    </CompositionApi>
     <hr />
 
     <p>{{ textoBase }}</p>
