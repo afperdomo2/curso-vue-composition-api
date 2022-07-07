@@ -9,7 +9,7 @@
     <LifeCycle />
     <hr />
 
-    <CompositionApi />
+    <CompositionApi ciudad="Invernalia" continente="Poniente" />
     <hr />
 
     <p>{{ textoBase }}</p>

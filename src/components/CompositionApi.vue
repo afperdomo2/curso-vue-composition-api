@@ -18,16 +18,43 @@
 </template>
 
 <script>
-import { ref, reactive, onMounted, watch, computed } from "vue";
+import { ref, toRefs, reactive, onMounted, watch, computed } from "vue";
 
 export default {
-  setup() {
+  props: {
+    ciudad: String,
+    continente: String,
+  },
+  setup(props) {
+    /*
+     * toRefs
+     * Convierte todas las propiedades en un objeto simple con propiedades que son referencias.
+     * Con esto se le puede dar reactividad todos los props, ya que estos no lo son, en caso de
+     * que se necesite
+     */
+    const { ciudad, continente } = toRefs(props);
+
+    /*
+     * toRef
+     * Hace lo mismo que toRefs, pero enfocado a una sola propiedad del objeto
+     *
+     * const ciudad = toRef(props, "ciudad");
+     * const continente = toRef(props, "continente");
+     *
+     */
+
     // Refs
     // Sirve para agregar reactividad a tipos de datos primitivos
     // Ejemplo: String, Number, Boolean, etc
     const text = ref("Hola vue");
     const counter = ref(0);
     const casa = ref("🐺Stark");
+    /*
+     * Los props también se podrían volver reactivos usando ref, pero serían más repetitivos
+     *
+     * const ciudad = ref(props.ciudad);
+     * const continente = ref(props.continente);
+     */
 
     // Reactive
     // Sirve para agregar reactividad a objetos
@@ -69,7 +96,7 @@ export default {
       persona,
       // Computed props
       nombreCompletoMayus: computed(() => {
-        return `${persona.nombre} ${persona.apellido} de la casa ${casa.value}`.toUpperCase();
+        return `${persona.nombre} ${persona.apellido} de la casa ${casa.value} ${ciudad.value} (${continente.value})`.toUpperCase();
       }),
     };
   },
