@@ -6,7 +6,7 @@
   <p>{{ text }} - Contador: {{ counter }}</p>
   <p>
     <b>Nombre Completo:</b>
-    {{ persona.nombreCompleto }}
+    {{ persona.nombreCompleto }} 🚹{{ username }}
   </p>
   <p>
     <b>Nombre Completo Mayúsculas:</b>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { ref, toRefs, reactive, onMounted, watch, computed } from "vue";
+import { ref, toRefs, reactive, onMounted, watch, computed, inject } from "vue";
 
 export default {
   props: {
@@ -71,6 +71,9 @@ export default {
      * const continente = ref(props.continente);
      */
 
+    // De esta forma la variable no es reactiva
+    const username = inject("username");
+
     // Reactive
     // Sirve para agregar reactividad a objetos
     const persona = reactive({
@@ -115,6 +118,7 @@ export default {
       text,
       counter,
       persona,
+      username,
       // Computed props
       nombreCompletoMayus: computed(() => {
         return `${persona.nombre} ${persona.apellido} de la casa ${casa.value} ${ciudad.value} (${continente.value})`.toUpperCase();

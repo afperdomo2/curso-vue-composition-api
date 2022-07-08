@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { provide } from "vue";
 import NavMenu from "./components/NavMenu.vue";
 import CompositionApi from "./components/CompositionApi.vue";
 import LifeCycle from "./components/LifeCycle.vue";
@@ -42,6 +43,9 @@ export default {
     return {
       show: false,
     };
+  },
+  setup() {
+    provide("username", "afperdomo");
   },
 };
 </script>
