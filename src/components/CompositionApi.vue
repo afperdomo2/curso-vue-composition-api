@@ -6,7 +6,8 @@
   <p>{{ text }} - Contador: {{ counter }}</p>
   <p>
     <b>Nombre Completo:</b>
-    {{ persona.nombreCompleto }} 🚹{{ username }}
+    {{ persona.nombreCompleto }}
+    🚹<input type="text" v-model="username" />
   </p>
   <p>
     <b>Nombre Completo Mayúsculas:</b>
@@ -71,7 +72,6 @@ export default {
      * const continente = ref(props.continente);
      */
 
-    // De esta forma la variable no es reactiva
     const username = inject("username");
 
     // Reactive

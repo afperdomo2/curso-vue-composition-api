@@ -3,6 +3,9 @@
     <button @click="show = !show">Menu</button>
     <hr />
 
+    🚹<input type="text" v-model="username" />
+    <hr />
+
     <Transition name="fade">
       <NavMenu v-show="show" />
     </Transition>
@@ -25,7 +28,7 @@
 </template>
 
 <script>
-import { provide } from "vue";
+import { ref, provide } from "vue";
 import NavMenu from "./components/NavMenu.vue";
 import CompositionApi from "./components/CompositionApi.vue";
 import LifeCycle from "./components/LifeCycle.vue";
@@ -45,7 +48,11 @@ export default {
     };
   },
   setup() {
-    provide("username", "afperdomo");
+    const username = ref("afperdomo");
+    provide("username", username);
+    return {
+      username,
+    };
   },
 };
 </script>
