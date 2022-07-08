@@ -7,7 +7,7 @@
   <p>
     <b>Nombre Completo:</b>
     {{ persona.nombreCompleto }}
-    🚹<input type="text" v-model="username" />
+    🚹<input ref="inputUsername" type="text" v-model="username" />
   </p>
   <p>
     <b>Nombre Completo Mayúsculas:</b>
@@ -72,6 +72,9 @@ export default {
      * const continente = ref(props.continente);
      */
 
+    // Los Template Refs se deben declarar siempre como null
+    const inputUsername = ref(null);
+
     const username = inject("username");
 
     // Reactive
@@ -104,6 +107,7 @@ export default {
 
     // Hooks
     onMounted(() => {
+      inputUsername.value.focus();
       counter.value = 100;
       console.log("mounted Composition API");
     });
@@ -119,6 +123,7 @@ export default {
       counter,
       persona,
       username,
+      inputUsername,
       // Computed props
       nombreCompletoMayus: computed(() => {
         return `${persona.nombre} ${persona.apellido} de la casa ${casa.value} ${ciudad.value} (${continente.value})`.toUpperCase();
